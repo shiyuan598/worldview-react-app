@@ -1,29 +1,24 @@
 import React from "react";
-import Worldview, {
-  Cubes,
-  Axes,
-  Text,
-  GLTFScene
-} from "@foxglove/regl-worldview";
+import Worldview, { Cubes, Axes, Text, GLTFScene } from "@foxglove/regl-worldview";
 import duckModel from "./duck.glb";
 
 function BasicExample() {
-  const markers = [
-    {
-      pose: {
-        orientation: { x: 0, y: 0, z: 0, w: 1 },
-        position: { x: 0, y: 0, z: 0 }
-      },
-      scale: { x: 1, y: 1, z: 1 },
-      color: { r: 1, g: 0, b: 1, a: 0.9 }
-    }
-  ];
+    const markers = [
+        {
+            pose: {
+                orientation: { x: 0, y: 0, z: 0, w: 1 },
+                position: { x: 0, y: 0, z: 0 }
+            },
+            scale: { x: 1, y: 1, z: 1 },
+            color: { r: 1, g: 0, b: 1, a: 0.9 }
+        }
+    ];
 
-  return (
-    <Worldview>
-      <Cubes>{markers}</Cubes>
-      <Axes />
-      {/* <Text autoBackgroundColor>
+    return (
+        <Worldview defaultCameraState={{ distance: 250, thetaOffset: (Math.PI * 3) / 4 }}>
+            <Cubes>{markers}</Cubes>
+            <Axes />
+            {/* <Text autoBackgroundColor>
         {[
           {
             text: "Hello, WorldView!",
@@ -36,17 +31,17 @@ function BasicExample() {
           }
         ]}
       </Text> */}
-      <GLTFScene model={duckModel}>
-        {{
-          pose: {
-            position: { x: 0, y: 0, z: 0 },
-            orientation: { x: 0, y: 0, z: 0, w: 1 }
-          },
-          scale: { x: 8, y: 8, z: 8 }
-        }}
-      </GLTFScene>
-    </Worldview>
-  );
+            <GLTFScene model={duckModel}>
+                {{
+                    pose: {
+                        position: { x: 0, y: 0, z: 0 },
+                        orientation: { x: 0, y: 0, z: 0, w: 0 }
+                    },
+                    scale: { x: 8, y: 8, z: 8 }
+                }}
+            </GLTFScene>
+        </Worldview>
+    );
 }
 
 export default BasicExample;
